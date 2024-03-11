@@ -7,13 +7,13 @@ function funcaoPadrao(callback) {
 
 function dizOi(callback) {
     console.log("Olá Gulp");
-    diztchau();
+    dizTchau();
     callback();
 }
 
-function diztchau() {
+function dizTchau() {
     console.log("Tchau Gulp");
 }
 
-exports.default = gulp.series(funcaoPadrao,);
+exports.default = gulp.series(funcaoPadrao, dizOi);
 exports.dizOi = dizOi;

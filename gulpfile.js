@@ -1,19 +1,33 @@
-const gulp =  required('gulp');
+const gulp =  require('gulp');
+const sass = require('gulp-sass')(require('sass'));
+
+function compilaSass() {
+    return gulp.src('./source/styles/main.scss')
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }))
+        .pipe(gulp.dest('./build/styles'));
+}
 
 function funcaoPadrao(callback) {
-    console.log("Executando via Gulp");
-    callback();
+    setTimeout(function() {
+        console.log("Executando via Gulp");
+        callback();
+    }, 2000);
 }
 
 function dizOi(callback) {
-    console.log("Olá Gulp");
-    dizTchau();
-    callback();
+    setTimeout(function() {
+        console.log("Olá Gulp");
+        dizTchau();
+        callback();
+    }, 1000);
 }
 
 function dizTchau() {
     console.log("Tchau Gulp");
 }
 
-exports.default = gulp.series(funcaoPadrao, dizOi);
+exports.default = gulp.parallel(funcaoPadrao, dizOi);
 exports.dizOi = dizOi;
+exports.sass = compilaSass;
